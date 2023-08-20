@@ -13,3 +13,9 @@ jobs:
     steps:
       # Checkout code
     - uses: actions/checkout@main
+      name: Build & Push Image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "180489" --password-stdin
+        docker image build -t 180489/pyflask:latest .
+        docker push 180489/pyflask:latest
+

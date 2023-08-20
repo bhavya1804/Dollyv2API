@@ -1,0 +1,21 @@
+name: Build and Push Docker Image
+on:
+  push:
+    branches: [ main ]
+      
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build & Push Image
+      uses: actions/checkout@v1
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "180489" --password-stdin
+        docker image build -t 180489/pyflask:latest .
+        docker push 180489/pyflask:latest
+
+    - name: Clean up
+      run: |
+        docker buildx prune -a --force

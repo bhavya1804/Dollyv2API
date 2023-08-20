@@ -1,7 +1,0 @@
-on: 
-jobs: 
-  first-job:
-    runs-on: windows-latest
-    steps: 
-      - run: node --version
-      - run: npn -- version 

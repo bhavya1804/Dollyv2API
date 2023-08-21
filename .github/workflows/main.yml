@@ -16,6 +16,6 @@ jobs:
     - name: Build & Push Image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "180489" --password-stdin
-        docker image build -t 180489/pydollyv2:latest .
+        docker image build -t 180489/pydollyv2test1:latest .
         docker push 180489/pydollyv2:latest
 

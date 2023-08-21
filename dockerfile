@@ -5,16 +5,14 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copy the requirements file into the container
-COPY requirements.txt .
+COPY . /app
 
 # Install required dependencies
-RUN pip install -r requirements.txt
-
-# Copy the Python script and the model file into the container
-COPY app.py .
+RUN apt-get update && \
+    pip install -r requirements.txt
 
 # Expose port 8000 for the FastAPI application
 EXPOSE 8000
 
 # Start the FastAPI application
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "app.py", "0.0.0.0:8000"]

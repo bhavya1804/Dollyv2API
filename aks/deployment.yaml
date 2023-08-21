@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: dolly-api-container
-          image: 180489/pydollyv2:latest
+          image: 180489/pydollyv2test2:latest
           ports:
             - containerPort: 80

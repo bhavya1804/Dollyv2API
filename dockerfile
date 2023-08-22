@@ -16,7 +16,7 @@ FROM base AS api
 COPY . .
 
 # Expose the port the API will run on
-EXPOSE 8000
+EXPOSE 80
 
 # Command to run the API
-CMD ["python", "app.py", "0.0.0.0:8000"]
+CMD ["python", "app.py", "0.0.0.0:80"]

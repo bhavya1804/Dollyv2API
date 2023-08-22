@@ -1,18 +1,22 @@
-# Use the official Python image as the base image
-FROM python:3.8-slim
+# Stage 1: Build the Python environment and install dependencies
+FROM python:3.8-slim AS base
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file into the container
+# Copy requirements.txt to the working directory
 COPY . /app
 
-# Install required dependencies
-RUN apt-get update && \
-    pip install -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 8000 for the FastAPI application
+# Stage 2: Load the model and setup the API
+FROM base AS api
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port the API will run on
 EXPOSE 8000
 
-# Start the FastAPI application
-CMD ["python", "app1.py", "0.0.0.0:8000"]
+# Command to run the API
+CMD ["python", "app.py", "0.0.0.0:8000"]

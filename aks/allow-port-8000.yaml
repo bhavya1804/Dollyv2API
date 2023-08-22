@@ -10,7 +10,7 @@ spec:
     - action: Allow
       protocol: TCP
       source:
-        selector: <source-pod-selector>
+        selector: dolly-api
       destination:
         ports:
           - ports: [8000]

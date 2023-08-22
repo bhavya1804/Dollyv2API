@@ -15,4 +15,4 @@ RUN apt-get update && \
 EXPOSE 8000
 
 # Start the FastAPI application
-CMD ["python", "app.py", "0.0.0.0:8000"]
+CMD ["python", "app1.py", "0.0.0.0:8000"]

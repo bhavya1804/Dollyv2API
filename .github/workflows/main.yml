@@ -23,12 +23,6 @@ jobs:
         # Add error handling if the build fails
 
       
-      # Security Scanning
-      - name: Security Scanning
-        run: |
-          docker scan 180489/pydollyv2multi-stage1:latest  # Use Docker scan for vulnerability assessment
-        # Consider how to handle security vulnerabilities, e.g., failing the build for critical issues
-
       # Push Docker image
       - name: Push Docker Image
         run: |

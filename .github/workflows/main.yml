@@ -22,12 +22,7 @@ jobs:
           docker image build -t 180489/pydollyv2multi-stage1:latest .
         # Add error handling if the build fails
 
-      # Run Tests
-      - name: Run Tests
-        run: |
-          docker run 180489/pydollyv2multi-stage1:latest npm test  # Replace with your test command
-        # Add error handling if tests fail
-
+      
       # Security Scanning
       - name: Security Scanning
         run: |

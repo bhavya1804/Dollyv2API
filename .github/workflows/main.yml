@@ -18,6 +18,7 @@ jobs:
       # Build Docker image
       - name: Build Docker Image
         run: |
+          echo "${{ secrets.DOCKERPW }}" | docker login -u "180489" --password-stdin
           docker image build -t 180489/pydollyv2multi-stage1:latest .
         # Add error handling if the build fails
 

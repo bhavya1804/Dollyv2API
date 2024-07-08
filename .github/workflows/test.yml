@@ -1,0 +1,41 @@
+name: Build, Test, and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Build Docker image
+      - name: Build Docker Image
+        run: |
+          echo "${{ secrets.DOCKERPW }}" | docker login -u "180489" --password-stdin
+          docker image build -t 180489/pydollyv2multi-stage1:latest .
+        # Add error handling if the build fails
+
+      
+      # Push Docker image
+      - name: Push Docker Image
+        run: |
+          echo "${{ secrets.DOCKERPW }}" | docker login -u "180489" --password-stdin
+          docker push 180489/pydollyv2multi-stage1:latest
+        # Add error handling if push fails
+
+      # Clean Up
+      - name: Clean Up
+        run: |
+          docker container prune --force
+          docker image prune --force
+
+      # Complete Workflow
+      - name: Complete Workflow
+        run: echo "Workflow completed"
